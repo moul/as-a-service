@@ -22,7 +22,7 @@ func GetManfredTouron() ManfredTouron {
 		GitHub:    manfredtouron.GitHub,
 		Twitter:   manfredtouron.Twitter,
 		Location:  manfredtouron.Location,
-		Headline:  manfredtouron.HeadLine,
+		Headline:  manfredtouron.Headline,
 		Emoji:     manfredtouron.Emoji,
 	}
 }
