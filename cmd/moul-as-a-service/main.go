@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/Sirupsen/logrus"
@@ -24,5 +25,10 @@ func main() {
 	if err != nil {
 		logrus.Fatalf("Failed to execute %q: %v", action, err)
 	}
-	fmt.Printf("%v\n", ret)
+
+	out, err := json.MarshalIndent(ret, "", "  ")
+	if err != nil {
+		logrus.Fatalf("Failed to marshal json: %v", err)
+	}
+	fmt.Printf("%s\n", out)
 }
