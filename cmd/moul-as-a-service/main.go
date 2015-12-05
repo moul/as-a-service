@@ -7,6 +7,7 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
+	"github.com/gin-gonic/gin"
 	"github.com/moul/as-a-service"
 )
 
@@ -37,6 +38,12 @@ func main() {
 		app.Commands = append(app.Commands, command)
 	}
 
+	app.Commands = append(app.Commands, cli.Command{
+		Name:        "server",
+		Description: "Run as a webserver",
+		Action:      Daemon,
+	})
+
 	app.Run(os.Args)
 }
 
@@ -52,4 +59,21 @@ func CliActionCallback(c *cli.Context) {
 		logrus.Fatalf("Failed to marshal json: %v", err)
 	}
 	fmt.Printf("%s\n", out)
+}
+
+func Daemon(c *cli.Context) {
+	r := gin.Default()
+	for action, fn := range Actions {
+		r.GET(fmt.Sprintf("/%s", action), func(c *gin.Context) {
+			ret, err := fn(nil)
+			if err != nil {
+				c.JSON(500, gin.H{
+					"err": err,
+				})
+				return
+			}
+			c.JSON(200, ret)
+		})
+	}
+	r.Run(":8080")
 }
