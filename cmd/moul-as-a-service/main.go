@@ -17,11 +17,16 @@ func GetManfredTouron(args []string) (interface{}, error) {
 	return moul.GetManfredTouron(), nil
 }
 
+func GetLatestBlogPosts(args []string) (interface{}, error) {
+	return moul.GetLatestBlogPosts()
+}
+
 var Actions map[string]Action
 
 func init() {
 	Actions = make(map[string]Action)
 	Actions["manfred-touron"] = GetManfredTouron
+	Actions["tumblr"] = GetLatestBlogPosts
 }
 
 func main() {
