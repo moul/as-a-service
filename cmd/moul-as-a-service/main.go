@@ -21,11 +21,16 @@ func GetLatestBlogPosts(args []string) (interface{}, error) {
 	return moul.GetLatestBlogPosts()
 }
 
+func GetGithubActivity(args []string) (interface{}, error) {
+	return moul.GetGithubActivity()
+}
+
 var Actions map[string]Action
 
 func init() {
 	Actions = make(map[string]Action)
 	Actions["manfred-touron"] = GetManfredTouron
+	Actions["github-activity"] = GetGithubActivity
 	Actions["tumblr"] = GetLatestBlogPosts
 }
 
