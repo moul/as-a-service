@@ -25,6 +25,10 @@ func GetGithubActivity(args []string) (interface{}, error) {
 	return moul.GetGithubActivity()
 }
 
+func GetKeybaseProfile(args []string) (interface{}, error) {
+	return moul.GetKeybaseProfile()
+}
+
 var Actions map[string]Action
 
 func init() {
@@ -32,6 +36,7 @@ func init() {
 	Actions["manfred-touron"] = GetManfredTouron
 	Actions["github-activity"] = GetGithubActivity
 	Actions["tumblr"] = GetLatestBlogPosts
+	Actions["keybase"] = GetKeybaseProfile
 }
 
 func main() {
