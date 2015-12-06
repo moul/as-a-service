@@ -1,0 +1,8 @@
+{
+    "project_name": "Manfred Touron",
+    "project_description": "Manfred Touron as a service",
+    "show_files": [
+        "app.go",
+        "app.yaml"
+    ]
+}
