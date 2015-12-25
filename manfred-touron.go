@@ -14,6 +14,10 @@ type ManfredTouron struct {
 	Groups    []string
 }
 
+func GetManfredTouronAction(args []string) (interface{}, error) {
+	return GetManfredTouron(), nil
+}
+
 func GetManfredTouron() ManfredTouron {
 	return ManfredTouron{
 		Firstname: manfredtouron.Firstname,

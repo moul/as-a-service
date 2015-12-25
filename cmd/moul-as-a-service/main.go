@@ -13,30 +13,14 @@ import (
 
 type Action func([]string) (interface{}, error)
 
-func GetManfredTouron(args []string) (interface{}, error) {
-	return moul.GetManfredTouron(), nil
-}
-
-func GetLatestBlogPosts(args []string) (interface{}, error) {
-	return moul.GetLatestBlogPosts()
-}
-
-func GetGithubActivity(args []string) (interface{}, error) {
-	return moul.GetGithubActivity()
-}
-
-func GetKeybaseProfile(args []string) (interface{}, error) {
-	return moul.GetKeybaseProfile()
-}
-
 var Actions map[string]Action
 
 func init() {
 	Actions = make(map[string]Action)
-	Actions["manfred-touron"] = GetManfredTouron
-	Actions["github-activity"] = GetGithubActivity
-	Actions["tumblr"] = GetLatestBlogPosts
-	Actions["keybase"] = GetKeybaseProfile
+	Actions["manfred-touron"] = moul.GetManfredTouronAction
+	Actions["github-activity"] = moul.GetGithubActivityAction
+	Actions["tumblr"] = moul.GetLatestBlogPostsAction
+	Actions["keybase"] = moul.GetKeybaseProfileAction
 }
 
 func main() {

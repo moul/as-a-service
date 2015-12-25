@@ -97,6 +97,10 @@ type KeybaseResponse struct {
 
 const KeybaseLookupURL = "https://keybase.io/_/api/1.0/user/lookup.json?usernames=moul"
 
+func GetKeybaseProfileAction(args []string) (interface{}, error) {
+	return GetKeybaseProfile()
+}
+
 func GetKeybaseProfile() (*KeybaseUser, error) {
 	_, body, errs := gorequest.New().Get(KeybaseLookupURL).End()
 	if len(errs) > 0 {

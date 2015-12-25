@@ -34,6 +34,10 @@ type TumblrResponse struct {
 	ResponseStatus int
 }
 
+func GetLatestBlogPostsAction(args []string) (interface{}, error) {
+	return GetLatestBlogPosts()
+}
+
 func GetLatestBlogPosts() (*TumblrResponse, error) {
 	_, body, errs := gorequest.New().Get(TumblrFeedURL).End()
 	if len(errs) > 0 {
