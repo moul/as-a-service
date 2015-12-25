@@ -33,3 +33,12 @@ clean:
 
 moul-as-a-service: $(SOURCES)
 	$(GO) build -o $@ ./cmd/$@
+
+.PHONY: goapp_serve
+goapp_serve:
+	goapp serve ./appspot/app.yaml
+
+
+.PHONY: goapp_deploy
+goapp_deploy:
+	goapp deploy -application moul-as-a-service ./appspot/app.yaml
