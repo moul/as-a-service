@@ -11,25 +11,13 @@ import (
 	"github.com/moul/as-a-service"
 )
 
-type Action func([]string) (interface{}, error)
-
-var Actions map[string]Action
-
-func init() {
-	Actions = make(map[string]Action)
-	Actions["manfred-touron"] = moul.GetManfredTouronAction
-	Actions["github-activity"] = moul.GetGithubActivityAction
-	Actions["tumblr"] = moul.GetLatestBlogPostsAction
-	Actions["keybase"] = moul.GetKeybaseProfileAction
-}
-
 func main() {
 	app := cli.NewApp()
 	app.Name = "moul-as-a-service"
 	app.Usage = "moul, but as a service"
 	app.Commands = []cli.Command{}
 
-	for action := range Actions {
+	for action := range moul.Actions() {
 		command := cli.Command{
 			Name:   action,
 			Action: CliActionCallback,
@@ -48,7 +36,7 @@ func main() {
 
 func CliActionCallback(c *cli.Context) {
 	action := c.Command.Name
-	ret, err := Actions[action](c.Args())
+	ret, err := moul.Actions()[action](c.Args())
 	if err != nil {
 		logrus.Fatalf("Failed to execute %q: %v", action, err)
 	}
@@ -62,7 +50,7 @@ func CliActionCallback(c *cli.Context) {
 
 func Daemon(c *cli.Context) {
 	r := gin.Default()
-	for action, fn := range Actions {
+	for action, fn := range moul.Actions() {
 		r.GET(fmt.Sprintf("/%s", action), func(c *gin.Context) {
 			ret, err := fn(nil)
 			if err != nil {

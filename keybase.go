@@ -6,6 +6,10 @@ import (
 	"github.com/parnurzeal/gorequest"
 )
 
+func init() {
+	RegisterAction("keybase", GetKeybaseProfileAction)
+}
+
 type KeybaseProof struct {
 	HumanURL          string `json:"human_url"`
 	Nametag           string `json:"nametag"`

@@ -6,6 +6,10 @@ import (
 	"github.com/parnurzeal/gorequest"
 )
 
+func init() {
+	RegisterAction("tumblr", GetLatestBlogPostsAction)
+}
+
 const TumblrFeedURL = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http://manfredtouron.tumblr.com/rss"
 
 type TumblrEntry struct {

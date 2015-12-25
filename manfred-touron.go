@@ -2,6 +2,10 @@ package moul
 
 import "github.com/moul/manfred-touron"
 
+func init() {
+	RegisterAction("manfred-touron", GetManfredTouronAction)
+}
+
 type ManfredTouron struct {
 	Firstname string
 	Lastname  string

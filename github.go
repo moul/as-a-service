@@ -4,6 +4,10 @@ import "github.com/SlyMarbo/rss"
 
 var feed *rss.Feed
 
+func init() {
+	RegisterAction("github-activity", GetGithubActivityAction)
+}
+
 func GetGithubActivityAction(args []string) (interface{}, error) {
 	return GetGithubActivity()
 }
