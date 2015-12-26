@@ -24,7 +24,7 @@ func actionHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			http.Error(w, fmt.Sprintf("service error: %v\n", err), 500)
 		} else {
-			w.Header().Set("Content-Type", "application/json")
+			w.Header().Set("Content-Type", "application/json; charset=utf-8")
 			enc := json.NewEncoder(w)
 			if err := enc.Encode(&ret); err != nil {
 				http.Error(w, fmt.Sprintf("json encode error: %v\n", err), 500)
