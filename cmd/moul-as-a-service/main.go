@@ -62,5 +62,9 @@ func Daemon(c *cli.Context) {
 			c.JSON(200, ret)
 		})
 	}
-	r.Run(":8080")
+	port := "8080"
+	if os.Getenv("PORT") != "" {
+		port = os.Getenv("PORT")
+	}
+	r.Run(fmt.Sprintf(":%s", port))
 }

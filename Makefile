@@ -2,6 +2,8 @@ GOENV ?=	GO15VENDOREXPERIMENT=1
 GODEP ?=	$(GOENV) godep
 GO ?=		$(GOENV) go
 SOURCES :=	$(shell find . -name "*.go")
+PORT ?=		8000
+
 
 all: build
 
@@ -25,7 +27,7 @@ godep-save:
 .PHONY: convey
 convey:
 	$(GO) get github.com/smartysteets/goconvey
-	goconvey -cover -port=9032 -workDir="$(shell realpath .)" -depth=-1
+	$(GOENV) goconvey -cover -port=9032 -workDir="$(shell realpath .)" -depth=-1
 
 .PHONY: clean
 clean:
@@ -36,9 +38,15 @@ moul-as-a-service: $(SOURCES)
 
 .PHONY: goapp_serve
 goapp_serve:
-	goapp serve ./appspot/app.yaml
+	$(GOENV) goapp serve ./appspot/app.yaml
 
 
 .PHONY: goapp_deploy
 goapp_deploy:
-	goapp deploy -application moul-as-a-service ./appspot/app.yaml
+	$(GOENV) goapp deploy -application moul-as-a-service ./appspot/app.yaml
+
+.PHONY: gin
+gin:
+	$(GO) get ./...
+	$(GO) get github.com/codegangsta/gin
+	cd ./cmd/moul-as-a-service; $(GOENV) gin --immediate --port=$(PORT) server
