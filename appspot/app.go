@@ -10,8 +10,25 @@ import (
 )
 
 func init() {
+	http.HandleFunc("/", indexHandler)
+
 	for name := range moul.Actions() {
 		http.HandleFunc(fmt.Sprintf("/%s", name), actionHandler)
+	}
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	var payload struct {
+		Services []string `json:"services"`
+	}
+	payload.Services = make([]string, 0)
+	for action := range moul.Actions() {
+		payload.Services = append(payload.Services, fmt.Sprintf("/%s", action))
+	}
+	enc := json.NewEncoder(w)
+	if err := enc.Encode(payload); err != nil {
+		http.Error(w, fmt.Sprintf("json encode error: %v\n", err), 500)
 	}
 }
 

@@ -50,6 +50,15 @@ func CliActionCallback(c *cli.Context) {
 
 func Daemon(c *cli.Context) {
 	r := gin.Default()
+	r.GET("/", func(c *gin.Context) {
+		services := []string{}
+		for action := range moul.Actions() {
+			services = append(services, fmt.Sprintf("/%s", action))
+		}
+		c.JSON(200, gin.H{
+			"services": services,
+		})
+	})
 	for action, fn := range moul.Actions() {
 		r.GET(fmt.Sprintf("/%s", action), func(c *gin.Context) {
 			ret, err := fn(nil)
