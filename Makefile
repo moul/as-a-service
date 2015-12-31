@@ -50,3 +50,15 @@ gin:
 	$(GO) get ./...
 	$(GO) get github.com/codegangsta/gin
 	cd ./cmd/moul-as-a-service; $(GOENV) gin --immediate --port=$(PORT) server
+
+
+.PHONY: heroku_deploy
+heroku_deploy:
+	#git remote add heroku https://git.heroku.com/moul-showcase.git
+	git push heroku master
+
+
+.PHONY: dokku_deploy
+dokku_deploy:
+	#git remote add dokku dokku@dokku.m.42.am:moul-showcase
+	git push dokku master
