@@ -50,6 +50,8 @@ func CliActionCallback(c *cli.Context) {
 
 func Daemon(c *cli.Context) {
 	r := gin.Default()
+
+	// Register index
 	r.GET("/", func(c *gin.Context) {
 		services := []string{}
 		for action := range moul.Actions() {
@@ -59,18 +61,35 @@ func Daemon(c *cli.Context) {
 			"services": services,
 		})
 	})
+
+	// Register actions
 	for action, fn := range moul.Actions() {
-		r.GET(fmt.Sprintf("/%s", action), func(c *gin.Context) {
-			ret, err := fn(nil)
-			if err != nil {
-				c.JSON(500, gin.H{
-					"err": err,
-				})
-				return
+		fmt.Println(action, fn)
+		func(action string, fn moul.Action) {
+			callback := func(c *gin.Context) {
+				//u, err := url.Parse(c.Request.URL.String())
+				//if err != nil {
+				//	c.String(500, fmt.Sprintf("failed to poarse url %q: %v", c.Request.URL.String(), err))
+				//}
+
+				ret, err := fn(nil)
+				// ret, err :- fn(u.RawQuery, c.Request.Body)
+				if err != nil {
+					c.JSON(500, gin.H{
+						"err": err,
+					})
+					return
+				}
+
+				// FIXME: handle content-types
+				c.JSON(200, ret)
 			}
-			c.JSON(200, ret)
-		})
+			r.GET(fmt.Sprintf("/%s", action), callback)
+			// POST
+		}(action, fn)
 	}
+
+	// Start server
 	port := "8080"
 	if os.Getenv("PORT") != "" {
 		port = os.Getenv("PORT")

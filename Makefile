@@ -16,6 +16,11 @@ test:
 	$(GO) get -t .
 	$(GO) test -v .
 
+.PHONY: cover
+cover:
+	rm -f profile.out
+	$(GO) test -covermode=count -coverpkg=. -coverprofile=profile.out
+
 .PHONY: godep-save
 godep-save:
 	$(GODEP) save $(shell go list ./... | grep -v /vendor/)
