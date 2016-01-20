@@ -59,11 +59,11 @@ gin:
 
 .PHONY: heroku_deploy
 heroku_deploy:
-	#git remote add heroku https://git.heroku.com/moul-showcase.git
+	git remote add heroku https://git.heroku.com/moul-as-a-service || true
 	git push heroku master
 
 
 .PHONY: dokku_deploy
 dokku_deploy:
-	#git remote add dokku dokku@dokku.m.42.am:moul-showcase
+	git remote add dokku dokku@dokku.m.42.am:moul-as-a-service || true
 	git push dokku master
