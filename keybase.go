@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/parnurzeal/gorequest"
+	"github.com/patrickmn/go-cache"
 )
 
 func init() {
@@ -102,7 +103,15 @@ type KeybaseResponse struct {
 const KeybaseLookupURL = "https://keybase.io/_/api/1.0/user/lookup.json?usernames=moul"
 
 func GetKeybaseProfileAction(args []string) (interface{}, error) {
-	return GetKeybaseProfile()
+	if profile, found := moulCache.Get("keybase-profile"); found {
+		return profile, nil
+	}
+	profile, err := GetKeybaseProfile()
+	if err != nil {
+		return nil, err
+	}
+	moulCache.Set("keybase-profile", profile, cache.DefaultExpiration)
+	return profile, nil
 }
 
 func GetKeybaseProfile() (*KeybaseUser, error) {

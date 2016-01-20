@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/parnurzeal/gorequest"
+	"github.com/patrickmn/go-cache"
 )
 
 func init() {
@@ -39,7 +40,15 @@ type TumblrResponse struct {
 }
 
 func GetLatestBlogPostsAction(args []string) (interface{}, error) {
-	return GetLatestBlogPosts()
+	if posts, found := moulCache.Get("tumblr-posts"); found {
+		return posts, nil
+	}
+	posts, err := GetLatestBlogPosts()
+	if err != nil {
+		return nil, err
+	}
+	moulCache.Set("tumblr-posts", posts, cache.DefaultExpiration)
+	return posts, nil
 }
 
 func GetLatestBlogPosts() (*TumblrResponse, error) {
