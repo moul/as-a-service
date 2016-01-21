@@ -3,11 +3,13 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 	"os"
 
 	"github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/schema"
 	"github.com/moul/as-a-service"
 )
 
@@ -67,10 +69,10 @@ func Daemon(c *cli.Context) {
 		fmt.Println(action, fn)
 		func(action string, fn moul.Action) {
 			callback := func(c *gin.Context) {
-				//u, err := url.Parse(c.Request.URL.String())
-				//if err != nil {
-				//	c.String(500, fmt.Sprintf("failed to poarse url %q: %v", c.Request.URL.String(), err))
-				//}
+				u, err := url.Parse(c.Request.URL.String())
+				if err != nil {
+					c.String(500, fmt.Sprintf("failed to poarse url %q: %v", c.Request.URL.String(), err))
+				}
 
 				ret, err := fn(nil)
 				// ret, err :- fn(u.RawQuery, c.Request.Body)
@@ -82,7 +84,40 @@ func Daemon(c *cli.Context) {
 				}
 
 				// FIXME: handle content-types
-				c.JSON(200, ret)
+				m, err := url.ParseQuery(u.RawQuery)
+				if err != nil {
+					c.JSON(500, gin.H{
+						"err": err,
+					})
+					return
+				}
+				var opts struct {
+					Callback string `schema:"callback"`
+				}
+				if len(m) > 0 {
+					decoder := schema.NewDecoder()
+					if err := decoder.Decode(&opts, m); err != nil {
+						c.JSON(500, gin.H{
+							"err": err,
+						})
+						return
+					}
+				}
+				if opts.Callback != "" {
+					// JSONP
+					jsonBytes, err := json.Marshal(ret)
+					if err != nil {
+						c.JSON(500, gin.H{
+							"err": err,
+						})
+						return
+					}
+					jsonp := fmt.Sprintf("%s(%s)", opts.Callback, string(jsonBytes))
+					c.String(200, jsonp)
+				} else {
+					// Standard JSON
+					c.JSON(200, ret)
+				}
 			}
 			r.GET(fmt.Sprintf("/%s", action), callback)
 			// POST
