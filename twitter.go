@@ -9,6 +9,7 @@ import (
 
 func init() {
 	RegisterAction("twitter-last-tweets", GetTwitterLastTweetsAction)
+	RegisterAction("twitter-followers-list", GetTwitterFollowersListAction)
 }
 
 func GetTwitterLastTweetsAction(args []string) (interface{}, error) {
@@ -23,6 +24,18 @@ func GetTwitterLastTweetsAction(args []string) (interface{}, error) {
 	return tweets, nil
 }
 
+func GetTwitterFollowersListAction(args []string) (interface{}, error) {
+	if followers, found := moulCache.Get("twitter-followers"); found {
+		return followers, nil
+	}
+	followers, err := GetTwitterFollowersList()
+	if err != nil {
+		return nil, err
+	}
+	moulCache.Set("twitter-followers", followers, cache.DefaultExpiration)
+	return followers, nil
+}
+
 func initTwitterAPI() *anaconda.TwitterApi {
 	anaconda.SetConsumerKey(os.Getenv("TWITTER_CONSUMER_KEY"))
 	anaconda.SetConsumerSecret(os.Getenv("TWITTER_CONSUMER_SECRET"))
@@ -30,7 +43,12 @@ func initTwitterAPI() *anaconda.TwitterApi {
 	return api
 }
 
+func GetTwitterFollowersList() (interface{}, error) {
+	api := initTwitterAPI()
+	return api.GetFollowersList(nil)
+}
+
 func GetTwitterLastTweets() (interface{}, error) {
 	api := initTwitterAPI()
-	return api.GetUserTimeline(map[string][]string{})
+	return api.GetUserTimeline(nil)
 }
