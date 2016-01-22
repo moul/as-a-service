@@ -68,6 +68,10 @@
 			"Rev": "14c555599c2a4f493c1e13fd1ea6fdf721739028"
 		},
 		{
+			"ImportPath": "github.com/itsjamie/gin-cors",
+			"Rev": "9526714e382db4023de25bfdad89cec9b7446092"
+		},
+		{
 			"ImportPath": "github.com/jtolds/gls",
 			"Rev": "9a4a02dbe491bef4bab3c24fd9f3087d6c4c6690"
 		},
