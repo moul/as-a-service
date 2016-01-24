@@ -175,5 +175,10 @@ func init() {
 			Handle:   "96602082",
 			URL:      "http://www.meetup.com/members/96602082/",
 		},
+		"tumblr": {
+			Provider: "Tumblr",
+			Handle:   "manfredtouron",
+			URL:      "https://manfredtouron.tumblr.com",
+		},
 	}
 }
