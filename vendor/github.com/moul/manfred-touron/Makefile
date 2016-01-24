@@ -1,3 +1,7 @@
+.PHONY: test
+test:
+	go test .
+
 .PHONY: goapp_serve
 goapp_serve:
 	goapp serve ./appspot/app.yaml
