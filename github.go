@@ -6,7 +6,7 @@ import (
 	"github.com/patrickmn/go-cache"
 )
 
-var feed *rss.Feed
+var githubFeed *rss.Feed
 
 func init() {
 	RegisterAction("github-activity", GetGithubActivityAction)
@@ -39,12 +39,12 @@ func GetGithubReposAction(args []string) (interface{}, error) {
 
 func GetGithubActivity() (*rss.Feed, error) {
 	var err error
-	if feed == nil {
-		feed, err = rss.Fetch("https://github.com/moul.atom")
+	if githubFeed == nil {
+		githubFeed, err = rss.Fetch("https://github.com/moul.atom")
 	} else {
-		err = feed.Update()
+		err = githubFeed.Update()
 	}
-	return feed, err
+	return githubFeed, err
 }
 
 func GetGithubRepos() (interface{}, error) {
