@@ -51,12 +51,12 @@ var Manfred = Person{
 
 func init() {
 	// PGP
-	Manfred.PGP.Fingerprint = "0859942B474A2B3C90D380490DCB9CE0CABAE1B5"
-	Manfred.PGP.F64bit = "0DCB9CE0CABAE1B5"
-	Manfred.PGP.F32bit = "CABAE1B5"
+	Manfred.PGP.Fingerprint = "4B2B95D630B5429595AC62286D4DED2EAB123456"
+	Manfred.PGP.F64bit = "6D4DED2EAB123456"
+	Manfred.PGP.F32bit = "AB123456"
 	Manfred.PGP.KeyAlgorithm = "RSA"
 	Manfred.PGP.KeyLength = 4096
-	Manfred.PGP.Name = "4096R/CABAE1B5"
+	Manfred.PGP.Name = "4096R/AB123456"
 	Manfred.PGP.URL = "https://keybase.io/moul/key.asc"
 
 	// Orgs
