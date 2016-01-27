@@ -57,7 +57,7 @@ func init() {
 	Manfred.PGP.KeyAlgorithm = "RSA"
 	Manfred.PGP.KeyLength = 4096
 	Manfred.PGP.Name = "4096R/AB123456"
-	Manfred.PGP.URL = "https://keybase.io/moul/key.asc"
+	Manfred.PGP.URL = "https://m.42.am/moul.asc"
 
 	// Orgs
 	Manfred.Organizations = map[string]organization{
