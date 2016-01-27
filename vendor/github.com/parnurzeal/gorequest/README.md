@@ -9,7 +9,7 @@ GoRequest -- Simplified HTTP client ( inspired by famous SuperAgent lib in Node.
 
 Sending request would never been fun and easier than this. It comes with lots of feature:
 
-* Get/Post/Put/Head/Delete/Patch
+* Get/Post/Put/Head/Delete/Patch/Options
 * Set - simple header setting
 * JSON - made it simple with JSON string as a parameter
 * Proxy - sending request via proxy
@@ -191,20 +191,22 @@ resp, bodyBytes, errs := gorequest.New().Get("http://example.com/").EndBytes()
 
 ## Debug
 
-For deugging, GoRequest leverages `httputil` to dump details of every request/response. (Thanks to @dafang)
+For debugging, GoRequest leverages `httputil` to dump details of every request/response. (Thanks to @dafang)
 
 You can just use `SetDebug` to enable/disable debug mode and `SetLogger` to set your own choice of logger.
 
+Thanks to @QuentinPerez, we can see even how gorequest is compared to CURL by using `SetCurlCommand`.
+
 ## Noted
-As the underlying gorequest is based on http.Client in most usecases, gorequest.New() should be called once and reuse gorequest as much as possible.
+As the underlying gorequest is based on http.Client in most use cases, gorequest.New() should be called once and reuse gorequest as much as possible.
 
 ## Contributing to GoRequest:
 
 If you find any improvement or issue you want to fix, feel free to send me a pull request with testing.
 
-Thanks to all contributers thus far:
+Thanks to all contributors thus far:
 
-@kemadz, @austinov, @figlief, @dickeyxxx, @killix, @jaytaylor, @na-ga, @dafang, @alaingilbert, @6david9, and @pencil001
+@kemadz, @austinov, @figlief, @dickeyxxx, @killix, @jaytaylor, @na-ga, @dafang, @alaingilbert, @6david9, @pencil001, @QuentinPerez, @smallnest, @piotrmiskiewicz and @coderhaoxin.
 
 Also, co-maintainer is needed here. If anyone is interested, please email me (parnurzeal at gmail.com)
 
@@ -216,5 +218,3 @@ Also, co-maintainer is needed here. If anyone is interested, please email me (pa
 ## License
 
 GoRequest is MIT License.
-
-

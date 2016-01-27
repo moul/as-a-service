@@ -43,7 +43,7 @@ var Manfred = Person{
 	Nickname:  "moul",
 	Company:   "Scaleway",
 	Homepage:  "https://m.42.am/",
-	Blog:      "https://manfredtouron.tumblr.com",
+	Blog:      "http://blog.m.42.am/",
 	Location:  "Rouen, France / Paris, France",
 	Headline:  "For passion, madness and glory",
 	Emoji:     "👌",
