@@ -180,5 +180,10 @@ func init() {
 			Handle:   "manfredtouron",
 			URL:      "https://manfredtouron.tumblr.com",
 		},
+		"aboutme": {
+			Provider: "about.me",
+			Handle:   "manfredtouron",
+			URL:      "https://about.me/manfredtouron",
+		},
 	}
 }
