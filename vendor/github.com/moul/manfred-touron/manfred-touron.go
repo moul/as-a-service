@@ -185,5 +185,10 @@ func init() {
 			Handle:   "manfredtouron",
 			URL:      "https://about.me/manfredtouron",
 		},
+		"couchsurfing": {
+			Provider: "Couchsurfing",
+			Handle:   "manfredtouron",
+			URL:      "https://www.couchsurfing.com/people/manfredtouron",
+		},
 	}
 }
