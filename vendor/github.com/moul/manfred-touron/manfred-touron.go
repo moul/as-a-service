@@ -190,5 +190,45 @@ func init() {
 			Handle:   "manfredtouron",
 			URL:      "https://www.couchsurfing.com/people/manfredtouron",
 		},
+		"openhub": {
+			Provider: "OpenHUB",
+			Handle:   "moul",
+			URL:      "https://www.openhub.net/accounts/moul",
+		},
+		"bountysource": {
+			Provider: "Bountysource",
+			Handle:   "moul",
+			URL:      "https://www.bountysource.com/people/29827",
+		},
+		"bitbucket": {
+			Provider: "Bitbucket",
+			Handle:   "moul",
+			URL:      "https://bitbucket.org/moul/",
+		},
+		"gratipay": {
+			Provider: "Gratipay",
+			Handle:   "moul",
+			URL:      "https://gratipay.com/~moul/",
+		},
+		"openstreetmap": {
+			Provider: "OpenStreetMap",
+			Handle:   "moul",
+			URL:      "http://www.openstreetmap.org/user/moul",
+		},
+		"coinbase": {
+			Provider: "coinbase",
+			Handle:   "moul",
+			URL:      "https://coinbase.com/moul",
+		},
+		"gitlabcom": {
+			Provider: "GitLab.com",
+			Handle:   "moul",
+			URL:      "https://gitlab.com/u/moul",
+		},
+		"wikipedia": {
+			Provider: "Wikipedia",
+			Handle:   "m42am",
+			URL:      "https://fr.wikipedia.org/wiki/Utilisateur:M42am",
+		},
 	}
 }
