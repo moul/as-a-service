@@ -91,6 +91,16 @@ func init() {
 			URL:      "http://soundcloud.com/camembert-au-lait-crew",
 			Position: "Crew member",
 		},
+		"anjunabeats": {
+			Name:     "Anjunabeats",
+			URL:      "http://www.anjunabeats.com",
+			Position: "IT staff",
+		},
+		"42am": {
+			Name:     "42.am",
+			URL:      "http://www.42.am",
+			Position: "Co-founder",
+		},
 	}
 
 	// Social profiles
@@ -229,6 +239,11 @@ func init() {
 			Provider: "Wikipedia",
 			Handle:   "m42am",
 			URL:      "https://fr.wikipedia.org/wiki/Utilisateur:M42am",
+		},
+		"thingiverse": {
+			Provider: "Thingiverse",
+			Handle:   "moul",
+			URL:      "http://www.thingiverse.com/moul/about",
 		},
 	}
 }
