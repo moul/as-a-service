@@ -1,6 +1,7 @@
 moul-as-a-service:
   labels:
     io.rancher.container.pull_image: always
+  command: server
   tty: false
   stdin_open: false
   image: moul/as-a-service:latest
