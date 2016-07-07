@@ -1,0 +1,77 @@
+hash: 072aaf7afe8b08984fcb9bf8f06915d1f7309cad9196770a5bc26156148d08c9
+updated: 2016-07-08T01:23:19.181129102+02:00
+imports:
+- name: github.com/axgle/mahonia
+  version: c528b747d92d41ca581a7acf3e604c396fc7c034
+- name: github.com/azr/backoff
+  version: 53511d3c733003985b0b76f733df1f4d0095ee6a
+- name: github.com/ChimeraCoder/anaconda
+  version: afffdbac178c0e78746ea42d7c1af963cb7ef28e
+- name: github.com/ChimeraCoder/tokenbucket
+  version: c5a927568de7aad8a58127d80bcd36ca4e71e454
+- name: github.com/codegangsta/cli
+  version: f9cc3001e04f9783cb4ad08ca6791aa07134787c
+- name: github.com/dustin/go-jsonpointer
+  version: 2efc9fef1d9421a8d252a32e20beb10cecd2bbca
+- name: github.com/dustin/gojson
+  version: af16e0e771e2ed110f2785564ae33931de8829e4
+- name: github.com/garyburd/go-oauth
+  version: 255d509a6f270332ffcaef6723047891319a2ffb
+  subpackages:
+  - oauth
+- name: github.com/gin-gonic/gin
+  version: c1e660dd1a071f7c8cf39c7cc181800ba15672f0
+- name: github.com/golang/protobuf
+  version: 6aaa8d47701fa6cf07e914ec01fde3d4a1fe79c3
+  subpackages:
+  - proto
+- name: github.com/google/go-github
+  version: b8b4ac742977310ff6e75140a403a38dab109977
+  subpackages:
+  - github
+- name: github.com/google/go-querystring
+  version: 2a60fc2ba6c19de80291203597d752e9ba58e4c0
+  subpackages:
+  - query
+- name: github.com/gopherjs/gopherjs
+  version: fb8ec00c0f9c3047be6e4eeef4407b33e855efe0
+  subpackages:
+  - js
+- name: github.com/gorilla/schema
+  version: 14c555599c2a4f493c1e13fd1ea6fdf721739028
+- name: github.com/itsjamie/gin-cors
+  version: 9526714e382db4023de25bfdad89cec9b7446092
+- name: github.com/jtolds/gls
+  version: 8ddce2a84170772b95dd5d576c48d517b22cac63
+- name: github.com/manucorporat/sse
+  version: ee05b128a739a0fb76c7ebd3ae4810c1de808d6d
+- name: github.com/moul/http2curl
+  version: b0342e01ef01008cc313e64847a3b80b96e1f9bf
+- name: github.com/moul/manfred-touron
+  version: 8534cb2516d825606d1c908da1f1c577161b628e
+- name: github.com/parnurzeal/gorequest
+  version: c73179dd31355d86bd7692de9b47623d6d0fa696
+- name: github.com/patrickmn/go-cache
+  version: 1881a9bccb818787f68c52bfba648c6cf34c34fa
+- name: github.com/Sirupsen/logrus
+  version: f7f79f729e0fbe2fcc061db48a9ba0263f588252
+- name: github.com/SlyMarbo/rss
+  version: 6a44088e4a97d14f26757a6ac53d1b5983ef467c
+- name: github.com/smartystreets/assertions
+  version: 5de9043ec1a39cc97edc838ef7236538a55b30a4
+- name: github.com/smartystreets/goconvey
+  version: 995f5b2e021c69b8b028ba6d0b05c1dd500783db
+  subpackages:
+  - convey
+- name: golang.org/x/net
+  version: 04b9de9b512f58addf28c9853d50ebef61c3953e
+  subpackages:
+  - context
+  - publicsuffix
+- name: golang.org/x/sys
+  version: eb2c74142fd19a79b3f237334c7384d5167b1b46
+  subpackages:
+  - unix
+- name: gopkg.in/go-playground/validator.v8
+  version: c193cecd124b5cc722d7ee5538e945bdb3348435
+devImports: []
