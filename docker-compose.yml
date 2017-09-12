@@ -1,9 +1,21 @@
-moul-as-a-service:
-  labels:
-    io.rancher.container.pull_image: always
-  command: server
-  tty: false
-  stdin_open: false
-  image: moul/as-a-service:latest
-  expose:
-    - "8080"
+version: '2'
+
+services:
+  moul-as-a-service:
+    labels:
+      io.rancher.container.pull_image: always
+    command: server
+    tty: false
+    stdin_open: false
+    image: moul/as-a-service:latest
+    expose:
+      - "8080"
+    environment:
+      - VIRTUAL_HOST=moul-as-a-service.m.42.am
+    networks:
+      - default
+      - service-proxy
+
+networks:
+  service-proxy:
+    external: true

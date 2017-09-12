@@ -7,6 +7,11 @@ PORT ?=		8000
 
 all: build
 
+run: up
+
+up:
+	docker-compose up -d --force-recreate --remove-orphans
+
 .PHONY: build
 build: moul-as-a-service
 
